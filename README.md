@@ -54,6 +54,17 @@ The generated app reads from `IstiN/trackstate` by default and uses
 configuration. Keep attachments under each issue's `attachments/` directory
 and store large binaries through Git LFS.
 
+Use this GitHub CLI command to validate that your authenticated
+`trackstate-setup` fork exposes the same project JSON the app reads:
+
+```bash
+gh api repos/<fork>/contents/<project-path>?ref=<default-branch> -H "Accept: application/vnd.github.raw+json"
+```
+
+Replace `<fork>` with your `<owner>/trackstate-setup` repository if you want
+to run it manually; the validation flow resolves `<default-branch>` and
+`<project-path>` to `DEMO/project.json`.
+
 ## Login options
 
 TrackState offers two login paths:
