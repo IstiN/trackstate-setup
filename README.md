@@ -97,7 +97,9 @@ DEMO/
   .trackstate/
     index/
       issues.json
-      deleted.json
+      tombstones.json
+    tombstones/
+      DEMO-99.json
   project.json
   config/
     resolutions.json

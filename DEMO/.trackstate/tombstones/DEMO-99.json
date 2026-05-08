@@ -1,0 +1,10 @@
+{
+  "key": "DEMO-99",
+  "project": "DEMO",
+  "formerPath": "DEMO/DEMO-99/main.md",
+  "deletedAt": "2026-05-05T00:30:00Z",
+  "summary": "Retired issue",
+  "issueType": "story",
+  "parent": null,
+  "epic": "DEMO-1"
+}
