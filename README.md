@@ -54,16 +54,18 @@ The generated app reads from `IstiN/trackstate` by default and uses
 configuration. Keep attachments under each issue's `attachments/` directory
 and store large binaries through Git LFS.
 
-Use this GitHub CLI command to validate that your authenticated
-`trackstate-setup` fork exposes the same project JSON the app reads:
+Run this command to validate that your authenticated GitHub CLI session can
+read the project JSON from your forked setup repository:
 
 ```bash
-gh api repos/<fork>/contents/<project-path>?ref=<default-branch> -H "Accept: application/vnd.github.raw+json"
+gh api repos/<repository>/contents/<project-path>?ref=<default-branch> --header "Accept: application/vnd.github.raw+json"
 ```
 
-Replace `<fork>` with your `<owner>/trackstate-setup` repository if you want
-to run it manually; the validation flow resolves `<default-branch>` and
-`<project-path>` to `DEMO/project.json`.
+Replace `<repository>` with your fork (for example,
+`octocat/trackstate-setup`), `<default-branch>` with that fork's default
+branch (usually `main`), and `<project-path>` with `DEMO/project.json`. The
+command should print the same JSON object stored in your fork's
+`DEMO/project.json`.
 
 ## Login options
 
@@ -97,9 +99,7 @@ DEMO/
   .trackstate/
     index/
       issues.json
-      tombstones.json
-    tombstones/
-      DEMO-99.json
+      deleted.json
   project.json
   config/
     resolutions.json
