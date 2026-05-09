@@ -121,3 +121,5 @@ Issue frontmatter stores canonical machine ids such as `issueType: story`, `stat
 Large attachments should be stored through Git LFS. `.gitattributes` already tracks common binary formats.
 
 <!-- TS-230 probe 2026-05-09T18:36:10.545601Z -->
+
+<!-- TS-230 probe 2026-05-09T18:57:39.111190Z -->
