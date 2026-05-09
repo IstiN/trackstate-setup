@@ -119,3 +119,5 @@ DEMO/
 Issue frontmatter stores canonical machine ids such as `issueType: story`, `status: in-review`, `priority: high`, and `fixVersions: [mvp]`. Localized labels come from `config/` and `config/i18n/*.json`, while `.trackstate/index/*.json` provides the generated key/path and tombstone lookup artifacts needed for stable issue resolution after moves.
 
 Large attachments should be stored through Git LFS. `.gitattributes` already tracks common binary formats.
+
+<!-- TS-230 probe 2026-05-09T18:36:10.545601Z -->
