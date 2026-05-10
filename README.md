@@ -34,6 +34,10 @@ The workflow does not commit generated web assets to this repository. It publish
 
 The deployed Pages artifact contains only the Flutter application. Tracker files are read at runtime from this repository through the GitHub API (`git/trees` for file discovery and `contents` for markdown/config reads), and writes are committed back with the GitHub Contents API.
 
+## Release automation
+
+Every push to `main` publishes a stable GitHub release and matching semantic version tag (`vX.Y.Z`). The release workflow derives the next patch version from existing semantic tags, creates the new tag on the pushed commit, and publishes the release notes automatically.
+
 ## Repository permissions
 
 Use a **Fine-grained personal access token (default)** when you want the
