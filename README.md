@@ -71,6 +71,14 @@ branch (usually `main`), and `<project-path>` with `DEMO/project.json`. The
 command should print the same JSON object stored in your fork's
 `DEMO/project.json`.
 
+If you also want a negative check, query a non-existent file path (for
+example, `DEMO/project.missing.json`) and expect `gh api` to fail with an
+HTTP `404 Not Found` response (non-zero exit status):
+
+```bash
+gh api repos/<repository>/contents/DEMO/project.missing.json?ref=<default-branch> --header "Accept: application/vnd.github.raw+json"
+```
+
 ## Login options
 
 TrackState offers two login paths:
