@@ -1,11 +1,20 @@
 {
-  "default": {
-    "statuses": ["To Do", "In Progress", "In Review", "Done"],
+  "epic-workflow": {
+    "name": "Epic Workflow",
+    "statuses": ["todo", "in-progress", "done"],
     "transitions": [
-      {"id": "start", "name": "Start work", "from": "To Do", "to": "In Progress"},
-      {"id": "review", "name": "Request review", "from": "In Progress", "to": "In Review"},
-      {"id": "complete", "name": "Complete", "from": "In Review", "to": "Done"},
-      {"id": "reopen", "name": "Reopen", "from": "Done", "to": "To Do"}
+      {"id": "epic-start", "name": "Start epic", "from": "todo", "to": "in-progress"},
+      {"id": "epic-complete", "name": "Complete epic", "from": "in-progress", "to": "done"}
+    ]
+  },
+  "delivery-workflow": {
+    "name": "Delivery Workflow",
+    "statuses": ["todo", "in-progress", "in-review", "done"],
+    "transitions": [
+      {"id": "start", "name": "Start work", "from": "todo", "to": "in-progress"},
+      {"id": "review", "name": "Request review", "from": "in-progress", "to": "in-review"},
+      {"id": "complete", "name": "Complete", "from": "in-review", "to": "done"},
+      {"id": "reopen", "name": "Reopen", "from": "done", "to": "todo"}
     ]
   }
 }
