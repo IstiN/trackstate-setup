@@ -28,4 +28,4 @@ Try changing a status.
 
 # Description
 
-This sub-task shows nested hierarchy and canonical `parent` / `epic` metadata. Test
+This sub-task shows nested hierarchy and canonical `parent` / `epic` metadata.
