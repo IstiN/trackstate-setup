@@ -1,27 +1,62 @@
 [
   {
-    "key": "DEMO-1",
-    "path": "DEMO/DEMO-1/main.md",
-    "parent": null,
-    "epic": null,
-    "parentPath": null,
-    "epicPath": null,
-    "summary": "Welcome to TrackState.AI",
-    "issueType": "epic",
-    "status": "in-progress",
-    "priority": "highest",
-    "assignee": "demo-admin",
+    "key": "DEMO-3",
+    "path": "DEMO/DEMO-1/DEMO-2/DEMO-3/main.md",
+    "parent": "DEMO-2",
+    "epic": "DEMO-1",
+    "parentPath": "DEMO/DEMO-1/DEMO-2/main.md",
+    "epicPath": "DEMO/DEMO-1/main.md",
+    "summary": "Try changing a status",
+    "issueType": "subtask",
+    "status": "todo",
+    "priority": "medium",
+    "assignee": "demo-user",
     "labels": [
-      "welcome",
-      "git-native"
+      "workflow"
     ],
-    "updated": "2026-05-05T00:00:00Z",
+    "updated": "2026-05-05T00:07:00Z",
     "progress": 0.35,
-    "children": [
-      "DEMO-2",
-      "DEMO-4",
-      "DEMO-5"
+    "children": [],
+    "archived": false
+  },
+  {
+    "key": "DEMO-3992",
+    "path": "DEMO/DEMO-1/DEMO-2/DEMO-3992/main.md",
+    "parent": "DEMO-2",
+    "epic": "DEMO-1",
+    "parentPath": "DEMO/DEMO-1/DEMO-2/main.md",
+    "epicPath": "DEMO/DEMO-1/main.md",
+    "summary": "TS-399 descendant A",
+    "issueType": "subtask",
+    "status": "todo",
+    "priority": "medium",
+    "assignee": "demo-user",
+    "labels": [
+      "ts-399"
     ],
+    "updated": "2026-05-11T00:00:00Z",
+    "progress": 0.35,
+    "children": [],
+    "archived": false
+  },
+  {
+    "key": "DEMO-3993",
+    "path": "DEMO/DEMO-1/DEMO-2/DEMO-3993/main.md",
+    "parent": "DEMO-2",
+    "epic": "DEMO-1",
+    "parentPath": "DEMO/DEMO-1/DEMO-2/main.md",
+    "epicPath": "DEMO/DEMO-1/main.md",
+    "summary": "TS-399 descendant B",
+    "issueType": "subtask",
+    "status": "todo",
+    "priority": "medium",
+    "assignee": "demo-user",
+    "labels": [
+      "ts-399"
+    ],
+    "updated": "2026-05-11T00:00:00Z",
+    "progress": 0.35,
+    "children": [],
     "archived": false
   },
   {
@@ -46,26 +81,6 @@
       "DEMO-3992",
       "DEMO-3993"
     ],
-    "archived": false
-  },
-  {
-    "key": "DEMO-3",
-    "path": "DEMO/DEMO-1/DEMO-2/DEMO-3/main.md",
-    "parent": "DEMO-2",
-    "epic": "DEMO-1",
-    "parentPath": "DEMO/DEMO-1/DEMO-2/main.md",
-    "epicPath": "DEMO/DEMO-1/main.md",
-    "summary": "Try changing a status",
-    "issueType": "subtask",
-    "status": "todo",
-    "priority": "medium",
-    "assignee": "demo-user",
-    "labels": [
-      "workflow"
-    ],
-    "updated": "2026-05-05T00:07:00Z",
-    "progress": 0.35,
-    "children": [],
     "archived": false
   },
   {
@@ -108,6 +123,53 @@
     "archived": false
   },
   {
+    "key": "TS-101",
+    "path": "DEMO/DEMO-1/TS-101/main.md",
+    "parent": null,
+    "epic": "DEMO-1",
+    "parentPath": null,
+    "epicPath": "DEMO/DEMO-1/main.md",
+    "summary": "Machine-managed attachment container release lifecycle",
+    "issueType": "story",
+    "status": "todo",
+    "priority": "high",
+    "assignee": "demo-user",
+    "labels": [
+      "attachments",
+      "github-releases"
+    ],
+    "updated": "2026-05-12T21:34:27Z",
+    "progress": 0.0,
+    "children": [],
+    "archived": false
+  },
+  {
+    "key": "DEMO-1",
+    "path": "DEMO/DEMO-1/main.md",
+    "parent": null,
+    "epic": null,
+    "parentPath": null,
+    "epicPath": null,
+    "summary": "Welcome to TrackState.AI",
+    "issueType": "epic",
+    "status": "in-progress",
+    "priority": "highest",
+    "assignee": "demo-admin",
+    "labels": [
+      "welcome",
+      "git-native"
+    ],
+    "updated": "2026-05-05T00:00:00Z",
+    "progress": 0.35,
+    "children": [
+      "DEMO-2",
+      "DEMO-4",
+      "DEMO-5",
+      "TS-101"
+    ],
+    "archived": false
+  },
+  {
     "key": "DEMO-3991",
     "path": "DEMO/DEMO-3991/main.md",
     "parent": null,
@@ -119,46 +181,6 @@
     "status": "todo",
     "priority": "high",
     "assignee": "demo-admin",
-    "labels": [
-      "ts-399"
-    ],
-    "updated": "2026-05-11T00:00:00Z",
-    "progress": 0.35,
-    "children": [],
-    "archived": false
-  },
-  {
-    "key": "DEMO-3992",
-    "path": "DEMO/DEMO-1/DEMO-2/DEMO-3992/main.md",
-    "parent": "DEMO-2",
-    "epic": "DEMO-1",
-    "parentPath": "DEMO/DEMO-1/DEMO-2/main.md",
-    "epicPath": "DEMO/DEMO-1/main.md",
-    "summary": "TS-399 descendant A",
-    "issueType": "subtask",
-    "status": "todo",
-    "priority": "medium",
-    "assignee": "demo-user",
-    "labels": [
-      "ts-399"
-    ],
-    "updated": "2026-05-11T00:00:00Z",
-    "progress": 0.35,
-    "children": [],
-    "archived": false
-  },
-  {
-    "key": "DEMO-3993",
-    "path": "DEMO/DEMO-1/DEMO-2/DEMO-3993/main.md",
-    "parent": "DEMO-2",
-    "epic": "DEMO-1",
-    "parentPath": "DEMO/DEMO-1/DEMO-2/main.md",
-    "epicPath": "DEMO/DEMO-1/main.md",
-    "summary": "TS-399 descendant B",
-    "issueType": "subtask",
-    "status": "todo",
-    "priority": "medium",
-    "assignee": "demo-user",
     "labels": [
       "ts-399"
     ],
