@@ -1,2 +1,0 @@
-TS-388 seeded attachment used to verify newest-to-oldest ordering.
-Created: 2026-05-12T09:03:39Z
