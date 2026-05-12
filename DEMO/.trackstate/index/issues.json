@@ -11,10 +11,17 @@
     "status": "in-progress",
     "priority": "highest",
     "assignee": "demo-admin",
-    "labels": ["welcome", "git-native"],
+    "labels": [
+      "welcome",
+      "git-native"
+    ],
     "updated": "2026-05-05T00:00:00Z",
     "progress": 0.35,
-    "children": ["DEMO-2", "DEMO-4", "DEMO-5"],
+    "children": [
+      "DEMO-2",
+      "DEMO-4",
+      "DEMO-5"
+    ],
     "archived": false
   },
   {
@@ -29,10 +36,16 @@
     "status": "in-progress",
     "priority": "high",
     "assignee": "demo-user",
-    "labels": ["board"],
+    "labels": [
+      "board"
+    ],
     "updated": "2026-05-05T00:05:00Z",
     "progress": 0.35,
-    "children": ["DEMO-3", "DEMO-3992", "DEMO-3993"],
+    "children": [
+      "DEMO-3",
+      "DEMO-3992",
+      "DEMO-3993"
+    ],
     "archived": false
   },
   {
@@ -47,7 +60,9 @@
     "status": "todo",
     "priority": "medium",
     "assignee": "demo-user",
-    "labels": ["workflow"],
+    "labels": [
+      "workflow"
+    ],
     "updated": "2026-05-05T00:07:00Z",
     "progress": 0.35,
     "children": [],
@@ -65,7 +80,9 @@
     "status": "done",
     "priority": "medium",
     "assignee": "demo-user",
-    "labels": ["jql"],
+    "labels": [
+      "jql"
+    ],
     "updated": "2026-05-05T00:20:00Z",
     "progress": 1,
     "resolution": "done",
@@ -102,7 +119,9 @@
     "status": "todo",
     "priority": "high",
     "assignee": "demo-admin",
-    "labels": ["ts-399"],
+    "labels": [
+      "ts-399"
+    ],
     "updated": "2026-05-11T00:00:00Z",
     "progress": 0.35,
     "children": [],
@@ -120,7 +139,9 @@
     "status": "todo",
     "priority": "medium",
     "assignee": "demo-user",
-    "labels": ["ts-399"],
+    "labels": [
+      "ts-399"
+    ],
     "updated": "2026-05-11T00:00:00Z",
     "progress": 0.35,
     "children": [],
@@ -138,7 +159,9 @@
     "status": "todo",
     "priority": "medium",
     "assignee": "demo-user",
-    "labels": ["ts-399"],
+    "labels": [
+      "ts-399"
+    ],
     "updated": "2026-05-11T00:00:00Z",
     "progress": 0.35,
     "children": [],
