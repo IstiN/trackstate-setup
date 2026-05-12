@@ -1,0 +1,8 @@
+[
+  {
+    "id": "summary",
+    "name": "Summary",
+    "type": "string",
+    "required": true
+  }
+]
