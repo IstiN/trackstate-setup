@@ -1,0 +1,14 @@
+[
+  {
+    "id": "DEMO/DEMO-510/attachments/manual.pdf",
+    "name": "manual.pdf",
+    "mediaType": "application/pdf",
+    "sizeBytes": 59,
+    "author": "legacy-user",
+    "createdAt": "2026-05-12T20:31:06Z",
+    "storagePath": "DEMO/DEMO-510/attachments/manual.pdf",
+    "revisionOrOid": "",
+    "storageBackend": "repository-path",
+    "repositoryPath": "DEMO/DEMO-510/attachments/manual.pdf"
+  }
+]
