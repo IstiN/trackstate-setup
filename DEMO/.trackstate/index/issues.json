@@ -166,26 +166,5 @@
     "progress": 0.35,
     "children": [],
     "archived": false
-  },
-  {
-    "key": "TS-300",
-    "path": "DEMO/TS-300/main.md",
-    "parent": null,
-    "epic": null,
-    "parentPath": null,
-    "epicPath": null,
-    "summary": "Release identity conflict fixture",
-    "issueType": "story",
-    "status": "todo",
-    "priority": "medium",
-    "assignee": "demo-user",
-    "labels": [
-      "ts-503",
-      "release-conflict"
-    ],
-    "updated": "2026-05-12T00:00:00Z",
-    "progress": 0.0,
-    "children": [],
-    "archived": false
   }
 ]
