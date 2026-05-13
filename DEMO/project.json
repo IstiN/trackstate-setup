@@ -5,7 +5,7 @@
   "attachmentStorage": {
     "mode": "github-releases",
     "githubReleases": {
-      "tagPrefix": "ts510-attachments-"
+      "tagPrefix": "ts524-visible-controls-"
     }
   },
   "issueKeyPattern": "DEMO-{number}",
