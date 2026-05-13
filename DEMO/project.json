@@ -3,10 +3,7 @@
   "name": "Demo TrackState Project",
   "defaultLocale": "en",
   "attachmentStorage": {
-    "mode": "github-releases",
-    "githubReleases": {
-      "tagPrefix": "ts509-release-bypass-7057003f-"
-    }
+    "mode": "repository-path"
   },
   "issueKeyPattern": "DEMO-{number}",
   "dataModel": "nested-tree",
