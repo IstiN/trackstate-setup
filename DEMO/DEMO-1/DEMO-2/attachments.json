@@ -1,14 +1,14 @@
 [
   {
-    "id": "DEMO/DEMO-1/DEMO-2/attachments/manual.pdf",
-    "name": "manual.pdf",
+    "id": "DEMO/DEMO-1/DEMO-2/attachments/ts524-legacy-manual.pdf",
+    "name": "ts524-legacy-manual.pdf",
     "mediaType": "application/pdf",
-    "sizeBytes": 59,
+    "sizeBytes": 66,
     "author": "legacy-user",
-    "createdAt": "2026-05-12T20:31:06Z",
-    "storagePath": "DEMO/DEMO-1/DEMO-2/attachments/manual.pdf",
+    "createdAt": "2026-05-13T01:30:19Z",
+    "storagePath": "DEMO/DEMO-1/DEMO-2/attachments/ts524-legacy-manual.pdf",
     "revisionOrOid": "",
     "storageBackend": "repository-path",
-    "repositoryPath": "DEMO/DEMO-1/DEMO-2/attachments/manual.pdf"
+    "repositoryPath": "DEMO/DEMO-1/DEMO-2/attachments/ts524-legacy-manual.pdf"
   }
 ]
