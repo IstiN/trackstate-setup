@@ -5,7 +5,7 @@
   "attachmentStorage": {
     "mode": "github-releases",
     "githubReleases": {
-      "tagPrefix": "ts566-release-upload-1208cc65-"
+      "tagPrefix": "ts509-release-bypass-8a795196-"
     }
   },
   "issueKeyPattern": "DEMO-{number}",
