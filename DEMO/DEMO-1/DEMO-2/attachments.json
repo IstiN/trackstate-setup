@@ -10,17 +10,5 @@
     "revisionOrOid": "",
     "storageBackend": "repository-path",
     "repositoryPath": "DEMO/DEMO-1/DEMO-2/attachments/manual.pdf"
-  },
-  {
-    "id": "DEMO/DEMO-1/DEMO-2/attachments/ts525-readonly-proof.pdf",
-    "name": "ts525-readonly-proof.pdf",
-    "mediaType": "application/pdf",
-    "sizeBytes": 132,
-    "author": "ts-525",
-    "createdAt": "2026-05-13T01:20:25Z",
-    "storagePath": "DEMO/DEMO-1/DEMO-2/attachments/ts525-readonly-proof.pdf",
-    "revisionOrOid": "",
-    "storageBackend": "repository-path",
-    "repositoryPath": "DEMO/DEMO-1/DEMO-2/attachments/ts525-readonly-proof.pdf"
   }
 ]
