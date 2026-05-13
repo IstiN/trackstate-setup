@@ -166,5 +166,27 @@
     "progress": 0.35,
     "children": [],
     "archived": false
+  },
+  {
+    "key": "TS-50",
+    "path": "DEMO/TS-50/main.md",
+    "parent": null,
+    "epic": null,
+    "parentPath": null,
+    "epicPath": null,
+    "summary": "Release body normalization fixture",
+    "issueType": "story",
+    "status": "todo",
+    "priority": "medium",
+    "assignee": "demo-user",
+    "labels": [
+      "ts-536",
+      "attachments",
+      "github-releases"
+    ],
+    "updated": "2026-05-13T00:00:00Z",
+    "progress": 0.0,
+    "children": [],
+    "archived": false
   }
 ]
