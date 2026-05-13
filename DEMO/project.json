@@ -3,7 +3,10 @@
   "name": "Demo TrackState Project",
   "defaultLocale": "en",
   "attachmentStorage": {
-    "mode": "repository-path"
+    "mode": "github-releases",
+    "githubReleases": {
+      "tagPrefix": "ts566-release-browser-cacaeadf-"
+    }
   },
   "issueKeyPattern": "DEMO-{number}",
   "dataModel": "nested-tree",
