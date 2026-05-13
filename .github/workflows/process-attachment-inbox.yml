@@ -1,0 +1,289 @@
+name: Process attachment inbox
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**/.trackstate/upload-inbox/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  process:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Collect inbox files
+        id: collect
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "${GITHUB_EVENT_NAME}" == "workflow_dispatch" ]]; then
+            FILES="$(find . -type f -path "*/.trackstate/upload-inbox/*" | sed 's#^\./##' || true)"
+          else
+            FILES="$(git diff-tree --no-commit-id --name-only -r "$GITHUB_SHA" | grep '/.trackstate/upload-inbox/' || true)"
+          fi
+          {
+            echo "files<<EOF"
+            echo "$FILES"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Move inbox files to release assets and update manifests
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_SHA: ${{ github.sha }}
+          INBOX_FILES: ${{ steps.collect.outputs.files }}
+        run: |
+          python3 - <<'PY'
+          import json
+          import mimetypes
+          import os
+          import re
+          import urllib.error
+          import urllib.parse
+          import urllib.request
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          token = os.environ["GH_TOKEN"]
+          repository = os.environ["GITHUB_REPOSITORY"]
+          sha = os.environ["GITHUB_SHA"]
+          inbox_lines = [line.strip() for line in os.environ.get("INBOX_FILES", "").splitlines() if line.strip()]
+          repo_root = Path(".").resolve()
+
+          if not inbox_lines:
+              print("No inbox changes in this run.")
+              raise SystemExit(0)
+
+          def gh_request(method: str, url: str, *, data=None, headers=None):
+              req_headers = {
+                  "Authorization": f"Bearer {token}",
+                  "Accept": "application/vnd.github+json",
+                  "X-GitHub-Api-Version": "2022-11-28",
+                  "User-Agent": "trackstate-setup-inbox-processor",
+              }
+              if headers:
+                  req_headers.update(headers)
+              payload = None
+              if data is not None:
+                  if isinstance(data, (bytes, bytearray)):
+                      payload = bytes(data)
+                  else:
+                      payload = json.dumps(data).encode("utf-8")
+                      req_headers.setdefault("Content-Type", "application/json")
+              req = urllib.request.Request(url, data=payload, headers=req_headers, method=method)
+              try:
+                  with urllib.request.urlopen(req) as response:
+                      body = response.read()
+                      if not body:
+                          return response.status, None
+                      return response.status, json.loads(body.decode("utf-8"))
+              except urllib.error.HTTPError as error:
+                  body = error.read().decode("utf-8", errors="replace")
+                  raise RuntimeError(f"{method} {url} failed ({error.code}): {body}") from error
+
+          def sanitize_name(name: str) -> str:
+              normalized = name.replace("\\", "/").split("/")[-1]
+              normalized = re.sub(r"[^A-Za-z0-9._-]+", "-", normalized)
+              normalized = re.sub(r"-+", "-", normalized).strip("-")
+              return normalized or "attachment.bin"
+
+          def media_type_for(path: Path) -> str:
+              guessed, _ = mimetypes.guess_type(path.name)
+              return guessed or "application/octet-stream"
+
+          def resolve_issue_root(project_root: Path, issue_key: str) -> Path:
+              index_path = project_root / ".trackstate" / "index" / "issues.json"
+              if not index_path.exists():
+                  raise RuntimeError(f"Missing index file: {index_path}")
+              entries = json.loads(index_path.read_text(encoding="utf-8"))
+              for entry in entries:
+                  if str(entry.get("key", "")).strip().upper() == issue_key.upper():
+                      issue_main = str(entry.get("path", "")).strip()
+                      if not issue_main:
+                          break
+                      return (repo_root / issue_main).parent
+              raise RuntimeError(f"Issue key {issue_key} not found in {index_path}")
+
+          def resolve_tag_prefix(project_root: Path) -> str:
+              project_json_path = project_root / "project.json"
+              default_prefix = "trackstate-attachments-"
+              if not project_json_path.exists():
+                  return default_prefix
+              project_json = json.loads(project_json_path.read_text(encoding="utf-8"))
+              storage = project_json.get("attachmentStorage")
+              if not isinstance(storage, dict):
+                  return default_prefix
+              if storage.get("mode") != "github-releases":
+                  return default_prefix
+              releases = storage.get("githubReleases")
+              if not isinstance(releases, dict):
+                  return default_prefix
+              prefix = str(releases.get("tagPrefix", "")).strip()
+              return prefix or default_prefix
+
+          def ensure_release(tag: str, title: str):
+              release_url = f"https://api.github.com/repos/{repository}/releases/tags/{urllib.parse.quote(tag)}"
+              try:
+                  _, release = gh_request("GET", release_url)
+                  return release
+              except RuntimeError as error:
+                  if "(404)" not in str(error):
+                      raise
+              create_url = f"https://api.github.com/repos/{repository}/releases"
+              _, release = gh_request(
+                  "POST",
+                  create_url,
+                  data={
+                      "tag_name": tag,
+                      "target_commitish": sha,
+                      "name": title,
+                      "body": f"Automated attachment container for {title}.",
+                      "draft": False,
+                      "prerelease": False,
+                  },
+              )
+              return release
+
+          def upload_asset(release: dict, file_path: Path, asset_name: str, content_type: str):
+              release_id = int(release["id"])
+              list_url = f"https://api.github.com/repos/{repository}/releases/{release_id}/assets?per_page=100"
+              _, assets = gh_request("GET", list_url)
+              existing = next((asset for asset in (assets or []) if asset.get("name") == asset_name), None)
+              if existing:
+                  delete_url = f"https://api.github.com/repos/{repository}/releases/assets/{existing['id']}"
+                  gh_request("DELETE", delete_url)
+
+              upload_url_template = str(release["upload_url"])
+              upload_base = upload_url_template.split("{", 1)[0]
+              query = urllib.parse.urlencode({"name": asset_name})
+              upload_url = f"{upload_base}?{query}"
+              with file_path.open("rb") as stream:
+                  data = stream.read()
+              _, uploaded = gh_request(
+                  "POST",
+                  upload_url,
+                  data=data,
+                  headers={"Content-Type": content_type},
+              )
+              return uploaded
+
+          def update_manifest(issue_root: Path, *, issue_key: str, source_file: Path, release_tag: str, asset_name: str, asset_id: int):
+              manifest_path = issue_root / "attachments.json"
+              if manifest_path.exists():
+                  raw = json.loads(manifest_path.read_text(encoding="utf-8"))
+                  if not isinstance(raw, list):
+                      raise RuntimeError(f"attachments.json must be an array: {manifest_path}")
+                  attachments = raw
+              else:
+                  attachments = []
+
+              normalized_name = source_file.name.strip() or "attachment.bin"
+              sanitized = sanitize_name(normalized_name)
+              storage_path = f"{issue_root.relative_to(repo_root).as_posix()}/attachments/{sanitized}"
+              timestamp = datetime.now(timezone.utc).isoformat(timespec="milliseconds").replace("+00:00", "Z")
+              size_bytes = source_file.stat().st_size
+              media_type = media_type_for(source_file)
+
+              entry = {
+                  "id": storage_path,
+                  "name": normalized_name,
+                  "mediaType": media_type,
+                  "sizeBytes": size_bytes,
+                  "author": "github-actions[bot]",
+                  "createdAt": timestamp,
+                  "storagePath": storage_path,
+                  "revisionOrOid": str(asset_id),
+                  "storageBackend": "github-releases",
+                  "githubReleaseTag": release_tag,
+                  "githubReleaseAssetName": asset_name,
+              }
+
+              replaced = False
+              for index, existing in enumerate(attachments):
+                  if str(existing.get("storagePath", "")).strip() == storage_path:
+                      attachments[index] = entry
+                      replaced = True
+                      break
+              if not replaced:
+                  attachments.append(entry)
+
+              def sort_key(item: dict):
+                  created = str(item.get("createdAt", ""))
+                  return created
+
+              attachments.sort(key=sort_key, reverse=True)
+              manifest_path.write_text(json.dumps(attachments, indent=2) + "\n", encoding="utf-8")
+
+          processed = 0
+          for relative in inbox_lines:
+              path = (repo_root / relative).resolve()
+              if not path.exists() or not path.is_file():
+                  continue
+              relative_posix = path.relative_to(repo_root).as_posix()
+              parts = relative_posix.split("/")
+              if ".trackstate" not in parts:
+                  continue
+              marker_index = parts.index(".trackstate")
+              if marker_index + 2 >= len(parts) or parts[marker_index + 1] != "upload-inbox":
+                  continue
+              issue_key = parts[marker_index + 2].strip()
+              if not issue_key:
+                  raise RuntimeError(f"Cannot resolve issue key from inbox path: {relative_posix}")
+              project_root = repo_root.joinpath(*parts[:marker_index])
+              if not project_root.exists():
+                  raise RuntimeError(f"Cannot resolve project root from inbox path: {relative_posix}")
+
+              issue_root = resolve_issue_root(project_root, issue_key)
+              tag_prefix = resolve_tag_prefix(project_root)
+              release_tag = f"{tag_prefix}{issue_key.upper()}"
+              release_title = f"Attachments for {issue_key.upper()}"
+              release = ensure_release(release_tag, release_title)
+
+              asset_name = sanitize_name(path.name)
+              uploaded = upload_asset(
+                  release,
+                  path,
+                  asset_name,
+                  media_type_for(path),
+              )
+              update_manifest(
+                  issue_root,
+                  issue_key=issue_key,
+                  source_file=path,
+                  release_tag=release_tag,
+                  asset_name=str(uploaded["name"]),
+                  asset_id=int(uploaded["id"]),
+              )
+              path.unlink()
+              processed += 1
+              print(f"Processed inbox file: {relative_posix} -> release {release_tag}/{uploaded['name']}")
+
+          if processed == 0:
+              print("No matching inbox files processed.")
+          else:
+              print(f"Processed files: {processed}")
+          PY
+
+      - name: Commit processed manifests
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -z "$(git status --porcelain)" ]]; then
+            echo "No repository changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "chore: process attachment inbox to github releases"
+          git push

@@ -43,6 +43,21 @@ pushes and pull requests touching `.github/workflows/**`, so broken workflow
 syntax fails with a dedicated `actionlint` run before it can silently disrupt
 release automation.
 
+## Hosted attachment inbox (release-backed uploads)
+
+Hosted browser sessions cannot reliably upload GitHub Release assets directly from the web client. To support release-backed attachment storage in forked setup repositories, this template includes **Process attachment inbox** automation:
+
+1. Commit files into:
+   - `<PROJECT>/.trackstate/upload-inbox/<ISSUE-KEY>/<file>`
+   - Example: `DEMO/.trackstate/upload-inbox/DEMO-2/design.png`
+2. Push to `main`.
+3. Workflow `process-attachment-inbox.yml` will:
+   - upload the file to the issue release tag (`<tagPrefix><ISSUE-KEY>`, default `trackstate-attachments-<ISSUE-KEY>`);
+   - create/update `<issue-root>/attachments.json` with `storageBackend: github-releases`;
+   - remove the source inbox file and commit the cleanup.
+
+This keeps hosted upload UX predictable while still using GitHub Releases for attachment binaries.
+
 ## Repository permissions
 
 Use a **Fine-grained personal access token (default)** when you want the
