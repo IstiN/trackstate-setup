@@ -2,6 +2,9 @@
   "key": "DEMO",
   "name": "Demo TrackState Project",
   "defaultLocale": "en",
+  "attachmentStorage": {
+    "mode": "repository-path"
+  },
   "issueKeyPattern": "DEMO-{number}",
   "dataModel": "nested-tree",
   "configPath": "config"
