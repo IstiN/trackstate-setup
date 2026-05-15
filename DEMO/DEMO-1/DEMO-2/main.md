@@ -3,29 +3,20 @@ key: DEMO-2
 project: DEMO
 issueType: story
 status: in-progress
-priority: high
-summary: Explore the issue board
+priority: medium
+summary: "Explore the issue board"
 assignee: demo-user
 reporter: demo-admin
-labels:
-  - board
-components:
-  - flutter-ui
-fixVersions:
-  - mvp
-watchers:
-  - demo-admin
-  - demo-user
-archived: false
-customFields:
-  storyPoints: 5
-  releaseTrain:
-    - web
-    - mobile
+labels: ["board"]
+components: ["flutter-ui"]
+fixVersions: ["mvp"]
+watchers: ["demo-admin","demo-user"]
+customFields: {"storyPoints":5,"releaseTrain":["web","mobile"]}
 parent: null
 epic: DEMO-1
-created: 2026-05-05T00:05:00Z
-updated: 2026-05-05T00:05:00Z
+created: "2026-05-05T00:05:00Z"
+updated: "2026-05-15T21:52:39.439Z"
+archived: false
 ---
 
 # Summary
