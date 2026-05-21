@@ -15,7 +15,7 @@ customFields: {"storyPoints":5,"releaseTrain":["web","mobile"]}
 parent: null
 epic: DEMO-1
 created: "2026-05-05T00:05:00Z"
-updated: "2026-05-21T20:09:07.906Z"
+updated: "2026-05-21T20:12:05.884Z"
 archived: false
 ---
 
