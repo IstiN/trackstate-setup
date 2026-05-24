@@ -1,12 +1,3 @@
 [
-  {
-    "id": "mvp",
-    "name": "MVP",
-    "released": false
-  },
-  {
-    "id": "ts463-unused",
-    "name": "TS-463 Disposable Version",
-    "released": false
-  }
+  {"id": "mvp", "name": "MVP", "released": false}
 ]
