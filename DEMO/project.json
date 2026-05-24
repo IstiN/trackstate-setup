@@ -5,7 +5,7 @@
   "attachmentStorage": {
     "mode": "github-releases",
     "githubReleases": {
-      "tagPrefix": "ts510-attachments-77a968c3-"
+      "tagPrefix": "trackstate-attachments-"
     }
   },
   "issueKeyPattern": "DEMO-{number}",
