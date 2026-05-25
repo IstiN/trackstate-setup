@@ -2,14 +2,15 @@
 key: DEMO-5
 project: DEMO
 issueType: story
-status: todo
+status: in-progress
 priority: medium
-summary: Document attachment handoff
+summary: "Document attachment handoff"
 assignee: demo-user
 reporter: demo-admin
 parent: null
 epic: DEMO-1
-updated: 2026-05-05T00:15:00Z
+updated: "2026-05-25T23:25:28.114Z"
+resolution: null
 ---
 
 # Description
