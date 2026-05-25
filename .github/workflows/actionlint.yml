@@ -5,8 +5,6 @@ on:
     paths:
       - .github/workflows/**
   pull_request:
-    paths:
-      - .github/workflows/**
 
 permissions:
   contents: read
@@ -18,6 +16,26 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Determine whether this PR changes workflow files
+        id: workflow-changes
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          if git diff --name-only "$BASE_SHA" "$HEAD_SHA" | grep -q '^.github/workflows/'; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: No workflow file changes in this pull request
+        if: github.event_name == 'pull_request' && steps.workflow-changes.outputs.changed != 'true'
+        run: echo "Skipping actionlint because this pull request does not modify .github/workflows/."
 
       - name: Run actionlint
+        if: github.event_name != 'pull_request' || steps.workflow-changes.outputs.changed == 'true'
         uses: rhysd/actionlint@v1.7.12
