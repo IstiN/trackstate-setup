@@ -29,4 +29,4 @@ Search with JQL.
 
 # Description
 
-Try queries like `project = DEMO AND issueType = Story AND epic = DEMO-1`.
+Use the JQL Search page to validate discovery matches across the demo issue corpus.
