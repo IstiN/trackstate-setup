@@ -36,7 +36,7 @@ The deployed Pages artifact contains only the Flutter application. Tracker files
 
 ## Release automation
 
-Every push to `main` publishes a stable GitHub release and matching semantic version tag (`vX.Y.Z`). The release workflow derives the next patch version from existing semantic tags, creates the new tag on the pushed commit, and publishes the release notes automatically.
+Pull requests to `main` run a contributor-visible **Semantic release dry-run** check, and every push to `main` publishes a stable GitHub release and matching semantic version tag (`vX.Y.Z`). The workflow derives the next patch version from existing semantic tags, previews that publish command on PRs, and creates the real release notes automatically after merge.
 
 Workflow changes are validated by the `Actionlint` GitHub Actions workflow on
 pushes and pull requests touching `.github/workflows/**`, so broken workflow

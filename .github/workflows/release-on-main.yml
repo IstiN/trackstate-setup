@@ -1,20 +1,73 @@
 name: Release on main
 
 on:
+  pull_request:
+    branches: [main]
   push:
     branches: [main]
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
-  group: release-on-main
+  group: release-on-main-${{ github.event_name }}
   cancel-in-progress: false
 
 jobs:
+  release-dry-run:
+    name: Release dry-run
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout setup repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch tags
+        run: git fetch --force --tags origin
+
+      - name: Determine next semantic version
+        id: version
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          LATEST_TAG="$(git tag --list | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | sort -V | tail -n 1 || true)"
+          if [[ -z "$LATEST_TAG" ]]; then
+            NEXT_VERSION="v0.0.1"
+          else
+            VERSION_PART="${LATEST_TAG#v}"
+            IFS='.' read -r MAJOR MINOR PATCH <<< "$VERSION_PART"
+            PATCH=$((PATCH + 1))
+            NEXT_VERSION="v${MAJOR}.${MINOR}.${PATCH}"
+          fi
+
+          echo "next_version=$NEXT_VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Semantic release dry-run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          NEXT_VERSION="${{ steps.version.outputs.next_version }}"
+          if gh release view "$NEXT_VERSION" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "dry-run: release $NEXT_VERSION already exists, so the publish path would no-op."
+            echo "gh release create \"$NEXT_VERSION\" --repo \"$GITHUB_REPOSITORY\" --target \"$GITHUB_SHA\" --title \"$NEXT_VERSION\" --generate-notes --dry-run"
+            exit 0
+          fi
+
+          echo "dry-run: would publish $NEXT_VERSION from commit $GITHUB_SHA after merge to main."
+          echo "gh release create \"$NEXT_VERSION\" --repo \"$GITHUB_REPOSITORY\" --target \"$GITHUB_SHA\" --title \"$NEXT_VERSION\" --generate-notes --dry-run"
+
   publish-release:
     name: Publish semantic release
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout setup repository
         uses: actions/checkout@v4
