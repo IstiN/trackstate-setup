@@ -3,23 +3,20 @@ key: DEMO-3
 project: DEMO
 issueType: subtask
 status: in-review
-priority: medium
-summary: Try changing a status
+priority: highest
+summary: "Try changing a status"
 assignee: demo-user
 reporter: demo-admin
-labels:
-  - workflow
-components:
-  - tracker-core
-fixVersions:
-  - mvp
-watchers:
-  - demo-user
-archived: false
+labels: ["workflow"]
+components: ["tracker-core"]
+fixVersions: ["mvp"]
+watchers: ["demo-user"]
+customFields: null
 parent: DEMO-2
 epic: DEMO-1
-created: 2026-05-05T00:15:00Z
-updated: 2026-05-05T00:15:00Z
+created: "2026-05-05T00:15:00Z"
+updated: "2026-05-25T22:28:37.877Z"
+archived: false
 ---
 
 # Summary
