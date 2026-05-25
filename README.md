@@ -38,12 +38,11 @@ The deployed Pages artifact contains only the Flutter application. Tracker files
 
 Pull requests to `main` run a contributor-visible **Semantic release dry-run** check, and every push to `main` publishes a stable GitHub release and matching semantic version tag (`vX.Y.Z`). The workflow derives the next patch version from existing semantic tags, previews that publish command on PRs, and creates the real release notes automatically after merge.
 
-Workflow changes are validated by the `Actionlint` GitHub Actions workflow.
-Pushes touching `.github/workflows/**` run the full lint, and pull requests
-always surface a single contributor-visible `actionlint` check that only lints
-when the PR actually changes `.github/workflows/**`. Broken workflow syntax
-still fails with a dedicated `actionlint` run before it can silently disrupt
-release automation.
+The `Actionlint` GitHub Actions workflow stays contributor-visible on every
+pull request and on pushes touching `.github/workflows/**`. On pull requests it
+checks whether `.github/workflows/**` changed before deciding to lint, so every
+PR still surfaces a single `actionlint` check while workflow syntax errors fail
+with a dedicated actionable run.
 
 ## Hosted attachment inbox (release-backed uploads)
 
