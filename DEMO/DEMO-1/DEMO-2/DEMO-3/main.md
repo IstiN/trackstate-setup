@@ -2,7 +2,7 @@
 key: DEMO-3
 project: DEMO
 issueType: subtask
-status: in-review
+status: done
 priority: highest
 summary: "Try changing a status"
 assignee: demo-user
@@ -15,8 +15,9 @@ customFields: null
 parent: DEMO-2
 epic: DEMO-1
 created: "2026-05-05T00:15:00Z"
-updated: "2026-05-25T22:28:37.877Z"
+updated: "2026-05-25T22:28:39.536Z"
 archived: false
+resolution: done
 ---
 
 # Summary
