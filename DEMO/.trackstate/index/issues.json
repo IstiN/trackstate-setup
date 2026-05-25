@@ -166,26 +166,5 @@
     "progress": 0.35,
     "children": [],
     "archived": false
-  },
-  {
-    "key": "TS-22",
-    "path": "DEMO/TS-22/main.md",
-    "parent": null,
-    "epic": null,
-    "parentPath": null,
-    "epicPath": null,
-    "summary": "TS-383 hosted Git LFS upload restriction fixture",
-    "issueType": "story",
-    "status": "todo",
-    "priority": "medium",
-    "assignee": "demo-user",
-    "labels": [
-      "ts-383",
-      "lfs"
-    ],
-    "updated": "2026-05-12T00:00:00Z",
-    "progress": 0.0,
-    "children": [],
-    "archived": false
   }
 ]
