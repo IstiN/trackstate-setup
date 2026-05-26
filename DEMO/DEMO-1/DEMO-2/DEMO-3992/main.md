@@ -2,7 +2,7 @@
 key: DEMO-3992
 project: DEMO
 issueType: subtask
-status: in-progress
+status: in-review
 priority: medium
 summary: "TS-399 descendant A"
 assignee: demo-user
@@ -11,7 +11,7 @@ labels: ["ts-399"]
 parent: DEMO-2
 epic: DEMO-1
 created: "2026-05-11T00:00:00Z"
-updated: "2026-05-25T23:55:59.741Z"
+updated: "2026-05-26T00:03:47.451Z"
 archived: false
 resolution: null
 ---
