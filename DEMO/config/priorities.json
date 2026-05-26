@@ -1,6 +1,1 @@
-[
-  {"id": "highest", "name": "Highest"},
-  {"id": "high", "name": "High"},
-  {"id": "medium", "name": "Medium"},
-  {"id": "low", "name": "Low"}
-]
+[{"id":"highest","name":"Highest"},{"id":"high","name":"High"},{"id":"medium","name":"Medium"},{"id":"low","name":"Low"}]

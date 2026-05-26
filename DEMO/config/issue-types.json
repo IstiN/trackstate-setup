@@ -1,7 +1,1 @@
-[
-  {"id": "epic", "name": "Epic", "hierarchyLevel": 1, "icon": "epic", "workflow": "epic-workflow"},
-  {"id": "story", "name": "Story", "hierarchyLevel": 0, "icon": "story", "workflow": "delivery-workflow"},
-  {"id": "task", "name": "Task", "hierarchyLevel": 0, "icon": "task", "workflow": "delivery-workflow"},
-  {"id": "subtask", "name": "Sub-task", "hierarchyLevel": -1, "icon": "subtask", "workflow": "delivery-workflow"},
-  {"id": "bug", "name": "Bug", "hierarchyLevel": 0, "icon": "bug", "workflow": "delivery-workflow"}
-]
+[{"id":"epic","name":"Epic","hierarchyLevel":1,"icon":"epic","workflow":"epic-workflow"},{"id":"story","name":"Story","hierarchyLevel":0,"icon":"story","workflow":"delivery-workflow"},{"id":"task","name":"Task","hierarchyLevel":0,"icon":"task","workflow":"delivery-workflow"},{"id":"subtask","name":"Sub-task","hierarchyLevel":-1,"icon":"subtask","workflow":"delivery-workflow"},{"id":"bug","name":"Bug","hierarchyLevel":0,"icon":"issue","workflow":"bug-workflow"}]
