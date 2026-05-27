@@ -2,7 +2,7 @@
 key: DEMO-3993
 project: DEMO
 issueType: subtask
-status: todo
+status: in-progress
 priority: medium
 summary: TS-399 descendant B
 assignee: demo-user
