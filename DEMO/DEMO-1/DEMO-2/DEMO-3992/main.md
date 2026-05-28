@@ -2,7 +2,7 @@
 key: DEMO-3992
 project: DEMO
 issueType: subtask
-status: in-review
+status: in-progress
 priority: medium
 summary: "TS-399 descendant A"
 assignee: demo-user
