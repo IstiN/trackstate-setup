@@ -3,7 +3,7 @@ key: DEMO-3992
 project: DEMO
 issueType: subtask
 status: in-progress
-priority: high
+priority: highest
 summary: "TS-399 descendant A"
 assignee: demo-user
 reporter: demo-admin
