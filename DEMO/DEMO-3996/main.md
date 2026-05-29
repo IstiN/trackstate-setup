@@ -2,7 +2,7 @@
 key: DEMO-3996
 project: DEMO
 issueType: story
-status: todo
+status: in-progress
 priority: medium
 summary: "TS-305 navigation verification 20260525T232953Z"
 assignee: ai-teammate
@@ -14,7 +14,8 @@ watchers: []
 parent: null
 epic: null
 created: "2026-05-25T23:30:34.453Z"
-updated: "2026-05-25T23:30:34.453Z"
+updated: "2026-05-29T10:20:56.893Z"
+resolution: null
 ---
 
 # Summary
