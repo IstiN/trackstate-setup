@@ -1,1 +1,11 @@
-[{"id":"mvp","name":"MVP"}]
+[
+  {
+    "id": "mvp",
+    "name": "MVP"
+  },
+  {
+    "id": "ts463-unused",
+    "name": "TS-463 Disposable Version",
+    "released": false
+  }
+]
