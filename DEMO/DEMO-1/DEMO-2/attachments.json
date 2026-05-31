@@ -1,14 +1,14 @@
 [
   {
-    "id": "DEMO/DEMO-1/DEMO-2/attachments/manual.pdf",
-    "name": "manual.pdf",
-    "mediaType": "application/pdf",
-    "sizeBytes": 59,
+    "id": "DEMO/DEMO-1/DEMO-2/attachments/board-preview.svg",
+    "name": "board-preview.svg",
+    "mediaType": "image/svg+xml",
+    "sizeBytes": 1194,
     "author": "legacy-user",
     "createdAt": "2026-05-12T20:31:06Z",
-    "storagePath": "DEMO/DEMO-1/DEMO-2/attachments/manual.pdf",
+    "storagePath": "DEMO/DEMO-1/DEMO-2/attachments/board-preview.svg",
     "revisionOrOid": "",
     "storageBackend": "repository-path",
-    "repositoryPath": "DEMO/DEMO-1/DEMO-2/attachments/manual.pdf"
+    "repositoryPath": "DEMO/DEMO-1/DEMO-2/attachments/board-preview.svg"
   }
 ]
