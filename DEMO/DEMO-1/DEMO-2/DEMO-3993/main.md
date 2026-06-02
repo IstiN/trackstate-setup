@@ -3,7 +3,7 @@ key: DEMO-3993
 project: DEMO
 issueType: subtask
 status: in-review
-priority: medium
+priority: highest
 summary: "TS-399 descendant B"
 assignee: demo-user
 reporter: demo-admin
@@ -12,7 +12,7 @@ customFields: null
 parent: DEMO-2
 epic: DEMO-1
 created: "2026-05-11T00:00:00Z"
-updated: "2026-06-02T18:22:19.718+00:00"
+updated: "2026-06-02T18:23:49.227Z"
 archived: false
 resolution: null
 ---
