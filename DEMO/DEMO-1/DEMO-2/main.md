@@ -2,15 +2,14 @@
 key: DEMO-2
 project: DEMO
 issueType: story
-status: in-progress
-priority: high
+status: done
+priority: highest
 summary: "Discovery board walkthrough"
 assignee: demo-user
 reporter: demo-admin
 labels: ["board"]
 components: []
-fixVersions:
-  - mvp
+fixVersions: []
 watchers: ["demo-admin","demo-user"]
 customFields: {"storyPoints":5,"releaseTrain":["web","mobile"]}
 parent: null
