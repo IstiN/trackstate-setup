@@ -41,8 +41,9 @@ Pull requests to `main` run a contributor-visible **Semantic release dry-run** c
 The `Actionlint` GitHub Actions workflow stays contributor-visible on every
 pull request and on pushes touching `.github/workflows/**`. On pull requests it
 checks whether `.github/workflows/**` changed before deciding to lint, so every
-PR still surfaces a single `actionlint` check while workflow syntax errors fail
-with a dedicated actionable run.
+PR still surfaces a single `actionlint` check while workflow syntax errors and
+missing job-level `timeout-minutes` settings fail with a dedicated actionable
+run.
 
 ## Hosted attachment inbox (release-backed uploads)
 

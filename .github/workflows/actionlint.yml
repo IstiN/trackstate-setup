@@ -13,6 +13,7 @@ jobs:
   actionlint:
     name: actionlint
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -35,6 +36,93 @@ jobs:
       - name: No workflow file changes in this pull request
         if: github.event_name == 'pull_request' && steps.workflow-changes.outputs.changed != 'true'
         run: echo "Skipping actionlint because this pull request does not modify .github/workflows/."
+
+      - name: Enforce job-level timeout-minutes
+        if: github.event_name != 'pull_request' || steps.workflow-changes.outputs.changed == 'true'
+        env:
+          BASE_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [[ "${BASE_SHA:-}" =~ ^0+$ ]]; then
+            mapfile -t workflow_files < <(
+              git diff-tree --no-commit-id --name-only -r "$HEAD_SHA" -- \
+                '.github/workflows/*.yml' '.github/workflows/*.yaml'
+            )
+          else
+            mapfile -t workflow_files < <(
+              git diff --name-only --diff-filter=ACMRTUXB "$BASE_SHA" "$HEAD_SHA" -- \
+                '.github/workflows/*.yml' '.github/workflows/*.yaml'
+            )
+          fi
+
+          if [[ ${#workflow_files[@]} -eq 0 ]]; then
+            echo "No workflow file changes detected; skipping timeout-minutes policy check."
+            exit 0
+          fi
+
+          WORKFLOW_FILES="$(printf '%s\n' "${workflow_files[@]}")" python3 - <<'PY'
+          from __future__ import annotations
+
+          import os
+          import re
+          import sys
+          from pathlib import Path
+
+          workflow_files = [line for line in os.environ.get("WORKFLOW_FILES", "").splitlines() if line]
+          missing: list[str] = []
+          jobs_key = re.compile(r"^jobs:\s*(?:#.*)?$")
+          job_header = re.compile(r"^  ([^:#\s][^:]*)\s*:\s*(?:#.*)?$")
+          timeout_key = re.compile(r"^    timeout-minutes:\s*(?:#.*)?$")
+
+          for rel_path in workflow_files:
+            text = Path(rel_path).read_text(encoding="utf-8")
+            in_jobs = False
+            current_job = None
+            current_job_has_timeout = False
+
+            for raw_line in text.splitlines():
+              stripped = raw_line.strip()
+              if not stripped or stripped.startswith("#"):
+                continue
+
+              if jobs_key.match(raw_line):
+                if current_job is not None and not current_job_has_timeout:
+                  missing.append(
+                    f"{rel_path}: job `{current_job}` is missing timeout-minutes"
+                  )
+                in_jobs = True
+                current_job = None
+                current_job_has_timeout = False
+                continue
+
+              if not in_jobs:
+                continue
+
+              match = job_header.match(raw_line)
+              if match:
+                if current_job is not None and not current_job_has_timeout:
+                  missing.append(
+                    f"{rel_path}: job `{current_job}` is missing timeout-minutes"
+                  )
+                current_job = match.group(1)
+                current_job_has_timeout = False
+                continue
+
+              if current_job is not None and timeout_key.match(raw_line):
+                current_job_has_timeout = True
+
+            if current_job is not None and not current_job_has_timeout:
+              missing.append(f"{rel_path}: job `{current_job}` is missing timeout-minutes")
+
+          if missing:
+            print("Workflow jobs must declare timeout-minutes:")
+            for line in missing:
+              print(f"- {line}")
+            sys.exit(1)
+          PY
 
       - name: Run actionlint
         if: github.event_name != 'pull_request' || steps.workflow-changes.outputs.changed == 'true'
