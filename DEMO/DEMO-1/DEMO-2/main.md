@@ -2,14 +2,15 @@
 key: DEMO-2
 project: DEMO
 issueType: story
-status: done
-priority: highest
+status: in-progress
+priority: high
 summary: "Discovery board walkthrough"
 assignee: demo-user
 reporter: demo-admin
 labels: ["board"]
 components: []
-fixVersions: []
+fixVersions:
+  - mvp
 watchers: ["demo-admin","demo-user"]
 customFields: {"storyPoints":5,"releaseTrain":["web","mobile"]}
 parent: null
@@ -26,4 +27,4 @@ Discovery board walkthrough.
 
 # Description
 
-Describe the issue.
+Describe the issue for assignees, board visibility, and accessibility review.
