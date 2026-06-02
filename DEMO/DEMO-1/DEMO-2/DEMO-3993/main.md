@@ -12,7 +12,7 @@ customFields: null
 parent: DEMO-2
 epic: DEMO-1
 created: "2026-05-11T00:00:00Z"
-updated: "2026-06-02T19:01:24.525+00:00"
+updated: "2026-06-02T19:08:48.690+00:00"
 archived: false
 resolution: null
 ---
