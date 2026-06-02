@@ -2,8 +2,8 @@
 key: DEMO-3993
 project: DEMO
 issueType: subtask
-status: done
-priority: highest
+status: in-review
+priority: medium
 summary: "TS-399 descendant B"
 assignee: demo-user
 reporter: demo-admin
@@ -12,9 +12,9 @@ customFields: null
 parent: DEMO-2
 epic: DEMO-1
 created: "2026-05-11T00:00:00Z"
-updated: "2026-06-02T19:22:37.792Z"
+updated: "2026-06-02T19:26:14.705+00:00"
 archived: false
-resolution: done
+resolution: null
 ---
 
 # Summary
