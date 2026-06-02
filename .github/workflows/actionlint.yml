@@ -59,8 +59,9 @@ jobs:
           fi
 
           if [[ ${#workflow_files[@]} -eq 0 ]]; then
-            echo "No workflow file changes detected; skipping timeout-minutes policy check."
-            exit 0
+            mapfile -t workflow_files < <(
+              git ls-files -- '.github/workflows/*.yml' '.github/workflows/*.yaml'
+            )
           fi
 
           WORKFLOW_FILES="$(printf '%s\n' "${workflow_files[@]}")" python3 - <<'PY'
@@ -75,7 +76,7 @@ jobs:
           missing: list[str] = []
           jobs_key = re.compile(r"^jobs:\s*(?:#.*)?$")
           job_header = re.compile(r"^  ([^:#\s][^:]*)\s*:\s*(?:#.*)?$")
-          timeout_key = re.compile(r"^    timeout-minutes:\s*(?:#.*)?$")
+          timeout_key = re.compile(r"^    timeout-minutes:\s*\d+\s*(?:#.*)?$")
 
           for rel_path in workflow_files:
             text = Path(rel_path).read_text(encoding="utf-8")

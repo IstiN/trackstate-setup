@@ -27,6 +27,7 @@ jobs:
   install-update:
     name: Build TrackState for this repository
     runs-on: ubuntu-latest
+    timeout-minutes: 60
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
