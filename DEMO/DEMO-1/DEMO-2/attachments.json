@@ -1,1 +1,14 @@
-[{"id":"DEMO/DEMO-1/DEMO-2/attachments/design_doc.pdf","name":"design_doc.pdf","mediaType":"application/pdf","sizeBytes":111,"author":"IstiN","createdAt":"2026-06-08T12:36:23.917Z","storagePath":"DEMO/DEMO-1/DEMO-2/attachments/design_doc.pdf","revisionOrOid":"0a8dc0ccee4fa46a8e90b591c1f613073530cda2","storageBackend":"repository-path","repositoryPath":"DEMO/DEMO-1/DEMO-2/attachments/design_doc.pdf"},{"id":"DEMO/DEMO-1/DEMO-2/attachments/board-preview.svg","name":"board-preview.svg","mediaType":"image/svg+xml","sizeBytes":1194,"author":"legacy-user","createdAt":"2026-05-12T20:31:06Z","storagePath":"DEMO/DEMO-1/DEMO-2/attachments/board-preview.svg","revisionOrOid":"1a5417963ea3a0113adfce6524ebd5d7e9ed3152","storageBackend":"repository-path","repositoryPath":"DEMO/DEMO-1/DEMO-2/attachments/board-preview.svg"}]
+[
+  {
+    "id": "DEMO/DEMO-1/DEMO-2/attachments/manual.pdf",
+    "name": "manual.pdf",
+    "mediaType": "application/pdf",
+    "sizeBytes": 59,
+    "author": "legacy-user",
+    "createdAt": "2026-05-12T20:31:06Z",
+    "storagePath": "DEMO/DEMO-1/DEMO-2/attachments/manual.pdf",
+    "revisionOrOid": "",
+    "storageBackend": "repository-path",
+    "repositoryPath": "DEMO/DEMO-1/DEMO-2/attachments/manual.pdf"
+  }
+]
