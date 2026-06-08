@@ -1,2 +1,3 @@
-TS-1322 initial hosted attachment content.
-Initial Content.
+TS-1322 replacement hosted attachment content.
+New Content.
+The cache should be invalidated after replacement.
