@@ -1,4 +1,5 @@
 name: Release on main
+# TS-256 probe: valid workflow comment to preserve YAML syntax
 
 on:
   pull_request:
