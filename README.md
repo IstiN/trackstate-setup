@@ -217,3 +217,5 @@ Large attachments should be stored through Git LFS. `.gitattributes` already tra
 <!-- TS-230 probe 2026-06-16T10:40:10.495300Z -->
 
 <!-- TS-230 probe 2026-06-16T11:13:30.267268Z -->
+
+<!-- TS-250 probe 2026-06-16T16:20:28.489394Z -->
