@@ -80,6 +80,13 @@ The generated app reads from `IstiN/trackstate` by default and uses
 configuration. Keep attachments under each issue's `attachments/` directory
 and store large binaries through Git LFS.
 
+For compiled CLI installers and assistant manifests for GitHub and Claude, see
+the latest release page in the main `IstiN/trackstate` repository:
+
+```text
+https://github.com/IstiN/trackstate/releases/latest
+```
+
 Run this command to validate that your authenticated GitHub CLI session can
 read the project JSON from your forked setup repository:
 
