@@ -84,10 +84,10 @@ Run this command to validate that your authenticated GitHub CLI session can
 read the project JSON from your forked setup repository:
 
 ```bash
-gh api repos/<repository>/contents/<project-path>?ref=<default-branch> --header "Accept: application/vnd.github.raw+json"
+gh api repos/<fork>/contents/<project-path>?ref=<default-branch> -H "Accept: application/vnd.github.raw+json"
 ```
 
-Replace `<repository>` with your fork (for example,
+Replace `<fork>` with your fork (for example,
 `octocat/trackstate-setup`), `<default-branch>` with that fork's default
 branch (usually `main`), and `<project-path>` with `DEMO/project.json`. The
 command should print the same JSON object stored in your fork's
@@ -98,7 +98,7 @@ example, `DEMO/project.missing.json`) and expect `gh api` to fail with an
 HTTP `404 Not Found` response (non-zero exit status):
 
 ```bash
-gh api repos/<repository>/contents/DEMO/project.missing.json?ref=<default-branch> --header "Accept: application/vnd.github.raw+json"
+gh api repos/<fork>/contents/DEMO/project.missing.json?ref=<default-branch> -H "Accept: application/vnd.github.raw+json"
 ```
 
 ## Login options
