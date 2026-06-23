@@ -1,1 +1,17 @@
-{"key":"DEMO","name":"Demo TrackState Project","defaultLocale":"en","attachmentStorage":{"mode":"repository-path"},"issueKeyPattern":"DEMO-{number}","dataModel":"nested-tree","configPath":"config","supportedLocales":["en"]}
+{
+  "key": "DEMO",
+  "name": "Demo TrackState Project",
+  "defaultLocale": "en",
+  "attachmentStorage": {
+    "mode": "github-releases",
+    "githubReleases": {
+      "tagPrefix": "ts495-release-access-2ca28964-"
+    }
+  },
+  "issueKeyPattern": "DEMO-{number}",
+  "dataModel": "nested-tree",
+  "configPath": "config",
+  "supportedLocales": [
+    "en"
+  ]
+}
