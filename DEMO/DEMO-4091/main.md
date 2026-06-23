@@ -2,7 +2,7 @@
 key: DEMO-4091
 project: DEMO
 issueType: story
-status: in-review
+status: done
 priority: medium
 summary: "TS-24 benchmark worker 8 20260623-103029"
 assignee: ai-teammate
@@ -14,8 +14,8 @@ watchers: []
 parent: null
 epic: null
 created: "2026-06-23T10:30:54.200010Z"
-updated: "2026-06-23T10:31:56.033580Z"
-resolution: null
+updated: "2026-06-23T10:32:16.903024Z"
+resolution: done
 ---
 
 # Summary
