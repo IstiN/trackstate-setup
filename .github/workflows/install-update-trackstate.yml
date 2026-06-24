@@ -33,13 +33,13 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout setup repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           path: setup
           lfs: true
 
       - name: Checkout TrackState source
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           repository: IstiN/trackstate
           ref: ${{ github.event.inputs.trackstate_ref || 'main' }}
