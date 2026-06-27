@@ -2,7 +2,7 @@
 key: DEMO-4224
 project: DEMO
 issueType: story
-status: in-review
+status: done
 priority: medium
 summary: "TS-24 smoke test 20260627-191419"
 assignee: ai-teammate
@@ -14,8 +14,8 @@ watchers: []
 parent: null
 epic: null
 created: "2026-06-27T19:14:27.297241Z"
-updated: "2026-06-27T19:15:14.535616Z"
-resolution: null
+updated: "2026-06-27T19:15:35.677945Z"
+resolution: done
 ---
 
 # Summary
