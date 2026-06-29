@@ -2,7 +2,7 @@
 key: DEMO-3992
 project: DEMO
 issueType: subtask
-status: todo
+status: in-review
 priority: highest
 summary: "TS-399 descendant A"
 assignee: demo-user
