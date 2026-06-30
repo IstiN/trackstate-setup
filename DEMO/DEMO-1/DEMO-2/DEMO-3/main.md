@@ -2,7 +2,7 @@
 key: DEMO-3
 project: DEMO
 issueType: subtask
-status: in-progress
+status: todo
 priority: highest
 summary: "Try changing a status"
 assignee: demo-user
